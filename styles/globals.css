@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #f3f3f3
 }
 
 a {
@@ -13,4 +14,19 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+[data-scroll]{
+  opacity: 0;
+  will-change: transform,scale,opacity;
+  transform: translateY(6rem) scale(0.93);
+  transition: all 1.5s cubic-bezier(0.165,0.84,0.44,1);
+
+}
+[data-scroll ='in']{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+[data-scroll='out']{
+  opacity: 0;
 }

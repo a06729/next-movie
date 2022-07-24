@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+.sliderDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn_container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.btn_right{
+    font-size:2.95rem;
+}
+.btn_left{
+    font-size:2.95rem;
+    margin-right:15px;
+}
+.container{
+    --items-per-screen: 4;
+    --slider-index: 0;
+    width:100%;
+    cursor: grab;
+    display: flex;
+    align-content: center;
+    overflow: auto;
+    scroll-behavior: smooth;
+    /* background-color: blue; */
+}
+.inner{
+    flex: 0 0 calc(100% / var(--items-per-screen));
+    max-width: calc(100% / var(--items-per-screen));
+}
+.image_item{
+    margin: 0px 10px;
+}
+
+.text{
+    font-family: 'Jua', sans-serif;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size: 16px;
+    line-height: 24px;
+    white-space:nowrap;
+    max-width: 70%;
+}
+
+.image_tag{
+    border-radius: 1rem;
+}
+
+@media (max-width: 480px) {
+    .btn_right{
+        display: none;
+        visibility: hidden;
+        font-size:2.95rem;
+    }
+    .btn_left{
+        display: none;
+        visibility: hidden;
+        font-size:2.95rem;
+        margin-right:15px;
+    }
+    .container{
+        --items-per-screen: 3;
+    }
+}
+@media (min-width: 1024px) {
+    .container{
+        --items-per-screen: 5;
+    }
+}
