@@ -18,7 +18,7 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
   return (
     <div>
       <div data-scroll>
-        <h1>인기순 테스트</h1>
+        <h1>인기순</h1>
         <Carousel movie_data={movie_data}></Carousel>
       </div>
       <div data-scroll>
