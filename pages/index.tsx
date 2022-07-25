@@ -97,20 +97,37 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
 }
 
 export async function getServerSideProps(){
-  const [{results},nowMovie,nowTv]:[MovieType,MovieType,tvType]=await Promise.all([
-    await (await fetch(`http://localhost:3000/api/movies/pop/1`)).json(),
-    await(await fetch(`http://localhost:3000/api/movies/now`)).json(),
-    await(await fetch(`http://localhost:3000/api/tv/popular`)).json()
-  ])
+  if(process.env.NODE_ENV=='production'){
+    const [{results},nowMovie,nowTv]:[MovieType,MovieType,tvType]=await Promise.all([
+      await (await fetch(`https://next-movie-czgv9jwqn-a06729.vercel.app/api/movies/pop/1`)).json(),
+      await(await fetch(`https://next-movie-czgv9jwqn-a06729.vercel.app/api/movies/now`)).json(),
+      await(await fetch(`https://next-movie-czgv9jwqn-a06729.vercel.app/api/tv/popular`)).json()
+    ]);
+    return {
+      props:{
+        movie_data:results,
+        nowMovie:nowMovie,
+        nowTv:nowTv
+      }
+    };
+  }else{
+    const [{results},nowMovie,nowTv]:[MovieType,MovieType,tvType]=await Promise.all([
+      await (await fetch(`http://localhost:3000/api/movies/pop/1`)).json(),
+      await(await fetch(`http://localhost:3000/api/movies/now`)).json(),
+      await(await fetch(`http://localhost:3000/api/tv/popular`)).json()
+    ]);
+    return {
+      props:{
+        movie_data:results,
+        nowMovie:nowMovie,
+        nowTv:nowTv
+      }
+    };
+  }
+
   //const {results}:MovieType = await (await fetch(`http://localhost:3000/api/movies/pop`)).json();
   //const nowMovie:MovieType=await(await fetch(`http://localhost:3000/api/movies/now`)).json();
   // console.log(nowMovie);
-  return {
-    props:{
-      movie_data:results,
-      nowMovie:nowMovie,
-      nowTv:nowTv
-    }
-  };
+
 }
 
