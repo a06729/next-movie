@@ -1,13 +1,12 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef} from "react";
 import Image from "next/image";
-import slider from "../styles/carousel.module.css";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import {MovieType} from "../components/interface/MovieType";
+import slider from "../styles/carousel.module.css";
 
 
 export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
-  // console.log(movie_data);
   const sliderRef = useRef<any>();
   const sliderInnerRef=useRef<any>();
   function right_move() {
@@ -25,16 +24,12 @@ export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
       <div className={slider.btn_container}>
         <div>
           <span onClick={left_move}>
-            <ArrowCircleLeftIcon
-              className={slider.btn_left}
-            ></ArrowCircleLeftIcon>
+            <ArrowCircleLeftIcon sx={{ fontSize:40 }} className={`${slider.btn_left}`} ></ArrowCircleLeftIcon>
           </span>
         </div>
         <div>
           <span onClick={right_move}>
-            <ArrowCircleRightIcon
-              className={slider.btn_right}
-            ></ArrowCircleRightIcon>
+            <ArrowCircleRightIcon sx={{ fontSize:40 }} className={`${slider.btn_right}`}></ArrowCircleRightIcon>
           </span>
         </div>
       </div>

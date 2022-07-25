@@ -22,6 +22,7 @@
     "scroll-out": "^2.2.12",
     "sharp": "^0.30.7",
     "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.5",
     "typeit-react": "^2.6.0"
   },
   "devDependencies": {
@@ -29,6 +30,7 @@
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
     "@types/react-slick": "^0.23.10",
+    "@types/styled-components": "^5.1.25",
     "@types/styled-jsx": "^3.4.4",
     "eslint": "8.20.0",
     "eslint-config-next": "^0.2.4",
