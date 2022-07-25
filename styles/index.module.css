@@ -18,9 +18,6 @@
     margin: 2rem 4px;
 }
 
-.movie_content_item_card_imageContainer{
-    /* max-height: "450px"; */
-}
 .movie_content_title{
     font-family: 'Jua', sans-serif;
     overflow:hidden;

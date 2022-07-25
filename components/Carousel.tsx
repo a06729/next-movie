@@ -48,6 +48,7 @@ export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
                   src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
                   width={240}
                   height={400}
+                  loading={'lazy'}
                 />
                 <div className={slider.text}>{data.title}</div>
               </div>

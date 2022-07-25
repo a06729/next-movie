@@ -36,6 +36,7 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
                               src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
                               width={400}
                               height={400}
+                              loading={'lazy'}
                             />
                       </div>
                       <Typography className={index_css.movie_content_title} component="div">
@@ -70,6 +71,7 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
                               src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
                               width={400}
                               height={400}
+                              loading={'lazy'}
                             />
                       </div>
                       <Typography className={index_css.movie_content_title} component="div">

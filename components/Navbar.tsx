@@ -1,3 +1,4 @@
+import naber_css from "../styles/navbar.module.css";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -6,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import Link from 'next/link';
-import naber_css from "../styles/navbar.module.css";
+
 
 export default function Navbar() {
   const [toggle,setToggle]=useState(false);
@@ -53,7 +54,7 @@ export default function Navbar() {
   return (
     <div>
         <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" elevation={0} className={naber_css.appBar}>
+        <AppBar position="static" elevation={0} style={{backgroundColor:"#F6F6F6"}}>
             <Toolbar>
             <IconButton
                 size="large"
