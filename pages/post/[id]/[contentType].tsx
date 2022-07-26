@@ -35,8 +35,8 @@ export default function Post(){
                 case contentTypes.Movie:
                     Promise.all([
                         //영화 정보 api 호출
-                        fetch(`https://next-movie-czgv9jwqn-a06729.vercel.app/api/movies/post/${id}`).then((res)=>res.json()),
-                        fetch(`https://next-movie-czgv9jwqn-a06729.vercel.app/api/movies/${id}/credits`).then((res)=>res.json())
+                        fetch(`https://next-movie-ebon.vercel.app/api/movies/post/${id}`).then((res)=>res.json()),
+                        fetch(`https://next-movie-ebon.vercel.app/api/movies/${id}/credits`).then((res)=>res.json())
                     ]).then((data)=>{
                         const [fetchContentData,ActorData]=data;
                         setContentData(fetchContentData);
@@ -47,8 +47,8 @@ export default function Post(){
                 case contentTypes.Tv:
                     Promise.all([
                         //영화 정보 api 호출
-                        fetch(`https://next-movie-czgv9jwqn-a06729.vercel.app/api/tv/post/${id}`).then((res)=>res.json()),
-                        fetch(`https://next-movie-czgv9jwqn-a06729.vercel.app/api/tv/${id}/credits`).then((res)=>res.json())
+                        fetch(`https://next-movie-ebon.vercel.app/api/tv/post/${id}`).then((res)=>res.json()),
+                        fetch(`https://next-movie-ebon.vercel.app/api/tv/${id}/credits`).then((res)=>res.json())
                     ]).then((data)=>{
                         const [fetchContentData,ActorData]=data;
                         console.log(fetchContentData);
