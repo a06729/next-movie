@@ -16,3 +16,12 @@ export interface tvType{
         release_date:string;
     }[]
 }
+
+export interface tvDetailType{
+    id:number;
+    name:string;
+    overview:string;
+    backdrop_path:string;
+    first_air_date:string;
+    poster_path:string;
+}

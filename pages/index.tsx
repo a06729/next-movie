@@ -9,7 +9,7 @@ import { Button, Card, CardActions, CardMedia, Typography } from "@mui/material"
 import index_css from "../styles/index.module.css";
 // import TypeIt from "typeit-react";
 import ScrollOut from "scroll-out";
-
+import {contentTypes} from "../components/enum/contentType";
 
 export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[],nowMovie:MovieType,nowTv:tvType}){
   useEffect(()=>{
@@ -66,13 +66,15 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
                   <Card>
                     <CardContent className={index_css.movie_content_card_content}> 
                       <div className={index_css.movie_content_item_card_imageContainer}>
-                            <Image
-                              className={index_css.movie_content_item_image}
-                              src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
-                              width={400}
-                              height={400}
-                              loading={'lazy'}
-                            />
+                            <Link href={`/post/${data.id}/${contentTypes.Tv}`}>
+                              <Image
+                                className={index_css.movie_content_item_image}
+                                src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
+                                width={400}
+                                height={400}
+                                loading={'lazy'}
+                              />
+                            </Link>
                       </div>
                       <Typography className={index_css.movie_content_title} component="div">
                         {data.name}

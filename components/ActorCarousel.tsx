@@ -1,15 +1,15 @@
-import { useRef} from "react";
+import { useRef, useState} from "react";
 import Image from "next/image";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import {MovieType} from "../components/interface/MovieType";
+import {MovieActorType} from "../components/interface/ActorType";
 import slider from "../styles/carousel.module.css";
-import Link from "next/link";
-import {contentTypes} from "../components/enum/contentType"
+import errorlogo from "../public/error.jpeg";
 
-export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
+export default function ActorCarousel({actorData}:{actorData?:MovieActorType|undefined}) {
   const sliderRef = useRef<any>();
   const sliderInnerRef=useRef<any>();
+  
   function right_move() {
     const slider=sliderRef.current;
     const itemsPerScreen = parseInt(getComputedStyle(slider).getPropertyValue("--items-per-screen"));
@@ -35,21 +35,21 @@ export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
         </div>
       </div>
       <div ref={sliderRef} className={slider.container}>
-        {movie_data.map((data) => {
+        {actorData?.cast.map((data) => {
+          const actorImage=`https://image.tmdb.org/t/p/w500/${data.profile_path}`;
+          const [error, setError] = useState(false);
           return (
-            <div ref={sliderInnerRef} className={slider.inner} key={data.poster_path}>
+            <div ref={sliderInnerRef} className={slider.inner} key={data.id}>
               <div className={slider.image_item}>
-                <Link href={`/post/${data.id}/${contentTypes.Movie}`}>
                     <Image
                       className={slider.image_tag}
-                      src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
+                      src={error?errorlogo:actorImage}
                       width={240}
                       height={400}
                       loading={'lazy'}
+                      onError={()=>setError(true)}
                     />
-                </Link>
-
-                <div className={slider.text}>{data.title}</div>
+                <div className={slider.text}>{data.name}</div>
               </div>
             </div>
           );
@@ -58,4 +58,3 @@ export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
     </div>
   );
 }
-
