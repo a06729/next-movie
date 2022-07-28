@@ -51,10 +51,10 @@
 }
 
 .info_data_title{
-    color: var(--text-color);
+    @apply text-text-white font-jua text-2xl
 }
 .info_data_release{
-    color: var(--text-color);
+    @apply text-text-white font-jua text-2xl
 }
 
 .info_data_overview>p:nth-child(1){

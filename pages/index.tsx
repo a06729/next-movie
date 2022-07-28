@@ -18,11 +18,11 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
   return (
     <div>
       <div data-scroll>
-        <h1>인기순</h1>
+        <h1 className="font-jua text-xl">인기순</h1>
         <Carousel movie_data={movie_data}></Carousel>
       </div>
       <div data-scroll>
-        <h1>영화</h1>
+        <h1 className="font-jua text-xl">영화</h1>
         <div className={index_css.movie_content_container}>
           {nowMovie.results.map((data)=>{
               return(          
@@ -30,15 +30,17 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
                 <div className={index_css.movie_content_item_card}>
                   <Card>
                     <CardContent className={index_css.movie_content_card_content}> 
-                      <div className={index_css.movie_content_item_card_imageContainer}>
-                            <Image
-                              className={index_css.movie_content_item_image}
-                              src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
-                              width={400}
-                              height={400}
-                              loading={'lazy'}
-                            />
-                      </div>
+                    <Link href={`/post/${data.id}/${contentTypes.Movie}`}>
+                        <div className={index_css.movie_content_item_card_imageContainer}>
+                              <Image
+                                className={index_css.movie_content_item_image}
+                                src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
+                                width={400}
+                                height={400}
+                                loading={'lazy'}
+                              />
+                        </div>
+                      </Link>
                       <Typography className={index_css.movie_content_title} component="div">
                         {data.title}
                       </Typography>
@@ -57,7 +59,7 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
         </div>
       </div>
       <div data-scroll>
-        <h1>스트리밍</h1>
+        <h1 className="font-jua text-xl">스트리밍</h1>
         <div className={index_css.movie_content_container}>
           {nowTv.results.map((data)=>{
               return(          

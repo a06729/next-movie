@@ -24,4 +24,5 @@ export interface tvDetailType{
     backdrop_path:string;
     first_air_date:string;
     poster_path:string;
+    vote_average:number;
 }
