@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import circularCss from "../styles/circular.module.css";
 
-export default function CircularProgress(popres:{ratingData:number}) {
+export default function CircularProgressBar(popres:{ratingData:number}) {
     const circularProgressRef= useRef<any>();
     useEffect(()=>{  
         circularProgressRef.current.style.background=`conic-gradient(#7d2ae8 ${popres.ratingData * 3.6}deg, #ededed 0deg)`;

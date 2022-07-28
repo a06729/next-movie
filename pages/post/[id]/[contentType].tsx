@@ -6,7 +6,8 @@ import ActorCarousel from "../../../components/ActorCarousel";
 import { MovieActorType } from '../../../components/interface/ActorType';
 import {contentTypes} from "../../../components/enum/contentType";
 import {tvDetailType} from "../../../components/interface/TvType";
-import CircularProgress from '../../../components/CircularProgress';
+import CircularProgressBar from '../../../components/CircularProgressBar';
+import { CircularProgress } from '@mui/material';
 interface contentDataType{
     adult:boolean;
     id:number;
@@ -93,10 +94,26 @@ export default function Post(){
         }
     },[router.isReady]);
     if(isLoading)<p>로딩중</p>
-    if(!actorData) return <p>출연진 데이터</p>
+    if(isLoading&& !actorData){ 
+        return (
+            <div className='flex justify-center items-center min-w-screen min-h-screen'>
+                <div className=''>
+                <CircularProgress size={85} color='inherit'></CircularProgress>
+                </div>
+            </div>
+        );
+    }
     
     if(contentType==contentTypes.Movie){
-        if (!contentData) return <p>No profile data</p>
+        if (!contentData) {
+            return (
+                <div className='flex justify-center items-center min-w-screen min-h-screen'>
+                    <div className=''>
+                    <CircularProgress size={85} color='inherit'></CircularProgress>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div>
                 <div className={contentCss.container}>
@@ -117,7 +134,7 @@ export default function Post(){
                             </div>
                             <div className='flex justify-center items-center'>
                                 <span className='font-jua text-text-white text-2xl '>평점</span>
-                                <CircularProgress ratingData={Math.floor(contentData.vote_average*10)}></CircularProgress>
+                                <CircularProgressBar ratingData={Math.floor(contentData.vote_average*10)}></CircularProgressBar>
                             </div>
                         </div>
                         <Image src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${contentData?.backdrop_path}`} style={{opacity:0.25}} width={"500"} height={"900"} alt="메인 배경 이미지" layout="fill" objectFit="cover" objectPosition="center"/>
@@ -131,7 +148,15 @@ export default function Post(){
     }else{
         let tvOverview;
         let tvBackdropPath;
-        if (!tvContentData) return <p>No profile data</p>
+        if (!tvContentData){ 
+            return(
+                <div className='flex justify-center items-center min-w-screen min-h-screen'>
+                    <div className=''>
+                        <CircularProgress size={85} color='inherit'></CircularProgress>
+                    </div>
+                </div>
+            );
+        } 
         if(tvContentData?.overview===""){
             // console.log("개요 없습니다.");
             tvOverview="개요가 준비 되지 못했습니다. ";
@@ -166,7 +191,7 @@ export default function Post(){
                             </div>
                             <div className='flex justify-center items-center'>
                                 <span className='font-jua text-text-white text-2xl '>평점</span>
-                                <CircularProgress ratingData={Math.floor(tvContentData.vote_average*10)}></CircularProgress>
+                                <CircularProgressBar ratingData={Math.floor(tvContentData.vote_average*10)}></CircularProgressBar>
                             </div>
                         </div>
                         <Image src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${tvBackdropPath}`} style={{opacity:0.25}} width={"500"} height={"900"} alt="메인 배경 이미지" layout="fill" objectFit="cover" objectPosition="center"/>
