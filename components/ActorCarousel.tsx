@@ -41,6 +41,7 @@ export default function ActorCarousel({actorData}:{actorData?:MovieActorType|und
           return (
             <div ref={sliderInnerRef} className={slider.inner} key={data.id}>
               <div className={slider.image_item}>
+                    <a>
                     <Image
                       className={slider.image_tag}
                       src={error?errorlogo:actorImage}
@@ -49,6 +50,7 @@ export default function ActorCarousel({actorData}:{actorData?:MovieActorType|und
                       loading={'lazy'}
                       onError={()=>setError(true)}
                     />
+                    </a>
                 <div className={slider.text}>{data.name}</div>
               </div>
             </div>

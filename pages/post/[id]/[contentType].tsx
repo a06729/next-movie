@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState ,forwardRef} from 'react';
 import contentCss from "../../../styles/content.module.css";
 import Image from "next/image";
 import ActorCarousel from "../../../components/ActorCarousel";
@@ -20,7 +20,7 @@ interface contentDataType{
     vote_average:number;
 }
 
-export default function Post(){
+function Post(){
     const router =useRouter();
     //영화 데이터 state
     const [contentData, setContentData] = useState<contentDataType>();
@@ -206,3 +206,5 @@ export default function Post(){
 
 
 }
+
+export default Post;

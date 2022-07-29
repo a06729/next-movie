@@ -1,4 +1,4 @@
-import { useRef} from "react";
+import { forwardRef, useRef} from "react";
 import Image from "next/image";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
@@ -7,7 +7,7 @@ import slider from "../styles/carousel.module.css";
 import Link from "next/link";
 import {contentTypes} from "../components/enum/contentType"
 
-export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
+function Carousel({movie_data}:{movie_data:MovieType[]}){
   const sliderRef = useRef<any>();
   const sliderInnerRef=useRef<any>();
   function right_move() {
@@ -39,7 +39,9 @@ export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
           return (
             <div ref={sliderInnerRef} className={slider.inner} key={data.poster_path}>
               <div className={slider.image_item}>
-                <Link href={`/post/${data.id}/${contentTypes.Movie}`}>
+                
+                <Link href={`/post/${data.id}/${contentTypes.Movie}`} passHref>
+                <a>
                     <Image
                       className={slider.image_tag}
                       src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
@@ -47,6 +49,7 @@ export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
                       height={400}
                       loading={'lazy'}
                     />
+                  </a>
                 </Link>
 
                 <div className={slider.text}>{data.title}</div>
@@ -57,5 +60,6 @@ export default function Carousel({movie_data}:{movie_data:MovieType[]}) {
       </div>
     </div>
   );
-}
+} 
 
+export default Carousel;

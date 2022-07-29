@@ -1,20 +1,21 @@
 import Link from "next/link";
-import { useEffect } from "react";
+import {useEffect,forwardRef } from "react";
 import Image from "next/image";
 import Carousel from "../components/Carousel";
 import {MovieType} from "../components/interface/MovieType";
 import {tvType} from "../components/interface/TvType";
 import CardContent from "@mui/material/CardContent";
-import { Button, Card, CardActions, CardMedia, Typography } from "@mui/material";
+import { Button, Card, CardActions, Typography } from "@mui/material";
 import index_css from "../styles/index.module.css";
-// import TypeIt from "typeit-react";
 import ScrollOut from "scroll-out";
 import {contentTypes} from "../components/enum/contentType";
+
+
 
 export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[],nowMovie:MovieType,nowTv:tvType}){
   useEffect(()=>{
     ScrollOut({});
-  },[])
+  },[]);
   return (
     <div>
       <div data-scroll>
@@ -30,7 +31,8 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
                 <div className={index_css.movie_content_item_card}>
                   <Card>
                     <CardContent className={index_css.movie_content_card_content}> 
-                    <Link href={`/post/${data.id}/${contentTypes.Movie}`}>
+                    <Link href={`/post/${data.id}/${contentTypes.Movie}`} passHref>
+                    <a>
                         <div className={index_css.movie_content_item_card_imageContainer}>
                               <Image
                                 className={index_css.movie_content_item_image}
@@ -40,6 +42,7 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
                                 loading={'lazy'}
                               />
                         </div>
+                      </a>
                       </Link>
                       <Typography className={index_css.movie_content_title} component="div">
                         {data.title}
@@ -67,8 +70,9 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
                 <div className={index_css.movie_content_item_card}>
                   <Card>
                     <CardContent className={index_css.movie_content_card_content}> 
-                      <div className={index_css.movie_content_item_card_imageContainer}>
-                            <Link href={`/post/${data.id}/${contentTypes.Tv}`}>
+                    <Link href={`/post/${data.id}/${contentTypes.Tv}`} passHref>
+                    <a>
+                        <div className={index_css.movie_content_item_card_imageContainer}>
                               <Image
                                 className={index_css.movie_content_item_image}
                                 src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
@@ -76,13 +80,14 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
                                 height={400}
                                 loading={'lazy'}
                               />
-                            </Link>
-                      </div>
+                        </div>
+                      </a>
+                      </Link>
                       <Typography className={index_css.movie_content_title} component="div">
                         {data.name}
                       </Typography>
                       <Typography component="div">
-                        방영일:{data.first_air_date}
+                        개봉일:{data.release_date}
                       </Typography>
                     </CardContent>
                     <CardActions>
@@ -128,10 +133,5 @@ export async function getServerSideProps(){
       }
     };
   }
-
-  //const {results}:MovieType = await (await fetch(`http://localhost:3000/api/movies/pop`)).json();
-  //const nowMovie:MovieType=await(await fetch(`http://localhost:3000/api/movies/now`)).json();
-  // console.log(nowMovie);
-
 }
 
