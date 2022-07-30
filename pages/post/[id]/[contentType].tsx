@@ -72,6 +72,7 @@ function Post(){
                     ]).then((data)=>{
                         const [fetchContentData,ActorData]=data;
                         console.log(fetchContentData);
+                        console.log(ActorData);
                         setContentData(fetchContentData);
                         setActorData(ActorData);
                         setLoading(false);
@@ -141,7 +142,8 @@ function Post(){
                     </div>
                 </div>
                 <div>
-                    <ActorCarousel actorData={actorData}></ActorCarousel>
+                    {actorData!.cast.length>0?<ActorCarousel actorData={actorData}></ActorCarousel>:<div>데이터가 없습니다.</div>}
+                    {/* <ActorCarousel actorData={actorData}></ActorCarousel> */}
                 </div>
             </div>
         );
@@ -198,7 +200,8 @@ function Post(){
                     </div>
                 </div>
                 <div>
-                    <ActorCarousel actorData={actorData}></ActorCarousel>
+                    {actorData!.cast.length>0?<ActorCarousel actorData={actorData}></ActorCarousel>:<div>데이터가 없습니다.</div>}
+                    {/* <ActorCarousel actorData={actorData}></ActorCarousel> */}
                 </div>
             </div>
         );
