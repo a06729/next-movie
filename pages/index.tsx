@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {useEffect,forwardRef } from "react";
+import {useEffect} from "react";
 import Image from "next/image";
 import Carousel from "../components/Carousel";
 import {MovieType} from "../components/interface/MovieType";
@@ -9,7 +9,7 @@ import { Button, Card, CardActions, Typography } from "@mui/material";
 import index_css from "../styles/index.module.css";
 import ScrollOut from "scroll-out";
 import {contentTypes} from "../components/enum/contentType";
-
+import card_css from "../styles/infoCard.module.css";
 
 
 export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[],nowMovie:MovieType,nowTv:tvType}){
@@ -26,38 +26,34 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
         <h1 className="font-jua text-xl">영화</h1>
         <div className={index_css.movie_content_container}>
           {nowMovie.results.map((data)=>{
-              return(          
-              <div className={index_css.movie_content_item} key={data.id}>
-                <div className={index_css.movie_content_item_card}>
-                  <Card>
-                    <CardContent className={index_css.movie_content_card_content}> 
-                    <Link href={`/post/${data.id}/${contentTypes.Movie}`} passHref>
-                    <a>
-                        <div className={index_css.movie_content_item_card_imageContainer}>
-                              <Image
-                                className={index_css.movie_content_item_image}
-                                src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
-                                width={400}
-                                height={400}
-                                loading={'lazy'}
-                              />
-                        </div>
-                      </a>
+              return (
+                <div className={index_css.movie_content_item} key={data.id}>
+                  <div className={index_css.movie_content_item_card}>
+                    <div className={card_css.cardContainer}>
+                      <Link
+                        href={`/post/${data.id}/${contentTypes.Movie}`}
+                        passHref
+                      >
+                        <a>
+                          <div className={card_css.cardImage}>
+                            <Image
+                              className="rounded-2xl"
+                              src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
+                              width={400}
+                              height={400}
+                              loading={"lazy"}
+                            />
+                          </div>
+                        </a>
                       </Link>
-                      <Typography className={index_css.movie_content_title} component="div">
-                        {data.title}
-                      </Typography>
-                      <Typography component="div">
+                      <div className={card_css.cardTitle}>{data.title}</div>
+                      <div className={card_css.cardOpenTitle}>
                         개봉일:{data.release_date}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
-                  </Card>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-              </div>);
+              );
           })}
         </div>
       </div>
@@ -68,32 +64,28 @@ export default function Home({movie_data,nowMovie,nowTv}:{movie_data:MovieType[]
               return(          
               <div className={index_css.movie_content_item} key={data.id}>
                 <div className={index_css.movie_content_item_card}>
-                  <Card>
-                    <CardContent className={index_css.movie_content_card_content}> 
-                    <Link href={`/post/${data.id}/${contentTypes.Tv}`} passHref>
-                    <a>
-                        <div className={index_css.movie_content_item_card_imageContainer}>
-                              <Image
-                                className={index_css.movie_content_item_image}
-                                src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
-                                width={400}
-                                height={400}
-                                loading={'lazy'}
-                              />
-                        </div>
-                      </a>
+                  <div className={card_css.cardContainer}>
+                      <Link
+                        href={`/post/${data.id}/${contentTypes.Tv}`}
+                        passHref
+                      >
+                        <a>
+                          <div className={card_css.cardImage}>
+                            <Image
+                              className="rounded-2xl"
+                              src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`}
+                              width={400}
+                              height={400}
+                              loading={"lazy"}
+                            />
+                          </div>
+                        </a>
                       </Link>
-                      <Typography className={index_css.movie_content_title} component="div">
-                        {data.name}
-                      </Typography>
-                      <Typography component="div">
-                        개봉일:{data.release_date}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
-                  </Card>
+                      <div className={card_css.cardTitle}>{data.name}</div>
+                      <div className={card_css.cardOpenTitle}>
+                        방영일:{data.first_air_date}
+                      </div>
+                    </div>
                 </div>
 
               </div>);

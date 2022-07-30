@@ -11,6 +11,7 @@ module.exports = {
       },
       colors: {
         'text-white': 'rgb(254, 251, 246)',
+        'hover-color':'#030303'
       },
     },
   },

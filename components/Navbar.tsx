@@ -16,18 +16,22 @@ import {
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faHome, faS, fas, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { promises } from "stream";
 
 export default function Navbar() {
   const asideRef = useRef<any>();
   const [open, setOpen] = useState(false);
   function openDrawer() {
-    if (open) {
-      enableScroll();
-      setOpen(false);
-    } else {
-      ableScroll();
-      setOpen(true);
-    }
+    return new Promise(async()=>{
+      if (open) {
+        enableScroll();
+        setOpen(open=>false);
+      } else {
+        ableScroll();
+        setOpen(open=>true);
+      }
+    });
+
   }
 
   function asideItem() {
@@ -43,16 +47,20 @@ export default function Navbar() {
               </div>
               <div>
                 <Link href={"/"} passHref>
-                  <a>
-                    <h1 onClick={openDrawer} className="font-jua text-2xl ">메인페이지</h1>
+                  <a onClick={async ()=>{
+                         await openDrawer();
+                  }}>
+                    <h1 className="font-jua text-2xl ">메인페이지</h1>
                   </a>
                 </Link>
               </div>
             </div>
         </div>
         <Link href={"/home"} passHref>
-          <a>
-            <div onClick={openDrawer} className="font-jua text-2xl mt-6">홈</div>
+          <a onClick={async ()=>{
+                await openDrawer();
+              }}>
+            <div className="font-jua text-2xl mt-6">홈</div>
           </a>
         </Link>
       </div>
@@ -62,9 +70,9 @@ export default function Navbar() {
   return (
     <div>
       <nav className="flex justify-between items-center my-4 ">
-        <div onClick={openDrawer}>
+        <div onClick={openDrawer} className="rounded-full w-14 text-center hover:outline hover:border-blue-500 hover:outline-blue-200/50 ">
           <FontAwesomeIcon
-            className="text-3xl text-black hover:text-blue-300 ml-8"
+            className="text-3xl text-black hover:text-blue-300 "
             icon={faBars}
           />
         </div>
@@ -89,12 +97,12 @@ export default function Navbar() {
   );
 }
 
-function enableScroll(): void {
+function enableScroll(){
   const scrollY = document.body.style.top;
   document.body.style.cssText = "";
   window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
 }
-function ableScroll() {
+function ableScroll(){
   document.body.style.cssText = `
   position: fixed; 
   top: -${window.scrollY}px;

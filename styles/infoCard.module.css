@@ -1,0 +1,23 @@
+.cardContainer{
+    @apply flex justify-center flex-col border rounded-3xl border-solid border-2 max-w-sm w-full hover:scale-105 hover:bg-hover-color/10 duration-300
+}
+.cardImage{
+    @apply flex justify-center items-center p-2
+}
+.cardTitle{
+    @apply px-2 font-jua text-xl max-w-[95%] whitespace-nowrap text-ellipsis overflow-hidden
+}
+.cardOpenTitle{
+    @apply px-2 font-jua text-xl max-w-[95%] whitespace-nowrap text-ellipsis overflow-hidden
+}
+
+@media (max-width: 480px) {
+    .cardTitle{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .cardOpenTitle{
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
