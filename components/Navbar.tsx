@@ -1,22 +1,9 @@
 import naber_css from "../styles/navbar.module.css";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { useEffect, useRef, useState } from "react";
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import {useRef, useState } from "react";
+
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faHome, faS, fas, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { promises } from "stream";
+import { faBars, faHome, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const asideRef = useRef<any>();

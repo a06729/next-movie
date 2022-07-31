@@ -7,7 +7,7 @@
     
 }
 .navAside{
-    @apply flex  flex-col bg-slate-200 w-80 h-screen
+    @apply flex  flex-col bg-white w-80 h-screen
 }
 .navbarHidden{
     @apply  opacity-0 delay-100  duration-700 ease-in-out translate-x-[-100%] invisible

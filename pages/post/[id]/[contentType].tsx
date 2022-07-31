@@ -8,6 +8,7 @@ import {contentTypes} from "../../../components/enum/contentType";
 import {tvDetailType} from "../../../components/interface/TvType";
 import CircularProgressBar from '../../../components/CircularProgressBar';
 import { CircularProgress } from '@mui/material';
+import { EmptyActor } from '../../../components/EmptyActor';
 interface contentDataType{
     adult:boolean;
     id:number;
@@ -142,7 +143,9 @@ function Post(){
                     </div>
                 </div>
                 <div>
-                    {actorData!.cast.length>0?<ActorCarousel actorData={actorData}></ActorCarousel>:<div>데이터가 없습니다.</div>}
+                    {/* 테이터 없는 경우가 있니까 없을때 표시할 화면 구현해야함 */}
+                    <h1 className='font-jua text-3xl mt-4'>출연진</h1>
+                    {actorData!.cast.length>0?<ActorCarousel actorData={actorData}></ActorCarousel>:<EmptyActor></EmptyActor>}
                     {/* <ActorCarousel actorData={actorData}></ActorCarousel> */}
                 </div>
             </div>
@@ -200,7 +203,8 @@ function Post(){
                     </div>
                 </div>
                 <div>
-                    {actorData!.cast.length>0?<ActorCarousel actorData={actorData}></ActorCarousel>:<div>데이터가 없습니다.</div>}
+                    <h1 className='font-jua text-3xl mt-4'>출연진</h1>
+                    {actorData!.cast.length>0?<ActorCarousel actorData={actorData}></ActorCarousel>:<EmptyActor></EmptyActor>}
                     {/* <ActorCarousel actorData={actorData}></ActorCarousel> */}
                 </div>
             </div>
