@@ -8,6 +8,8 @@ import index_css from "../styles/index.module.css";
 import ScrollOut from "scroll-out";
 import { contentTypes } from "../components/enum/contentType";
 import card_css from "../styles/infoCard.module.css";
+import { stringify } from "querystring";
+import { urlEnum } from "../components/enum/urlEnum";
 
 export default function Home({
   movie_data,
@@ -22,8 +24,15 @@ export default function Home({
   const [moviePage, setMoviePage] = useState(2);
   const [movieMore, setMovieMore] = useState<MovieType[]>();
   async function movie_more() {
-    const { results, ...info }: { results: MovieType[]; total_pages: number } =
-      await (await fetch(`http://localhost:3000/api/movies/now/${moviePage}`)).json();
+    let url:any="";
+    if (process.env.NODE_ENV == "production") {
+      url=urlEnum.production;
+    }else{
+      url=urlEnum.localhost;
+    }
+    //https://radlohead.gitbook.io/typescript-deep-dive/future-javascript/destructuring
+    //비구조 할당 하는법
+    const { results, ...info }: { results: MovieType[],total_pages: number} = await (await fetch(`${url}/api/movies/now/${moviePage}`)).json();
     if (info.total_pages >= moviePage) {
       console.log(results);
       setMovieMore((prev) => {
@@ -40,6 +49,7 @@ export default function Home({
     } else {
       console.log(results);
     }
+    
   }
   useEffect(() => {
     ScrollOut({});
