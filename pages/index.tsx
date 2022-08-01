@@ -2,13 +2,12 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Carousel from "../components/Carousel";
-import { MovieType, nextMoveiType } from "../components/interface/MovieType";
+import { MovieType} from "../components/interface/MovieType";
 import { tvType } from "../components/interface/TvType";
 import index_css from "../styles/index.module.css";
 import ScrollOut from "scroll-out";
 import { contentTypes } from "../components/enum/contentType";
 import card_css from "../styles/infoCard.module.css";
-import { stringify } from "querystring";
 import { urlEnum } from "../components/enum/urlEnum";
 
 export default function Home({
@@ -49,7 +48,7 @@ export default function Home({
     } else {
       console.log(results);
     }
-    
+
   }
   useEffect(() => {
     ScrollOut({});
@@ -183,17 +182,17 @@ export async function getServerSideProps() {
       await Promise.all([
         await (
           await fetch(
-            `https://next-movie-czgv9jwqn-a06729.vercel.app/api/movies/pop/1`
+            `${urlEnum.production}/api/movies/pop/1`
           )
         ).json(),
         await (
           await fetch(
-            `https://next-movie-czgv9jwqn-a06729.vercel.app/api/movies/now/1`
+            `${urlEnum.production}/api/movies/now/1`
           )
         ).json(),
         await (
           await fetch(
-            `https://next-movie-czgv9jwqn-a06729.vercel.app/api/tv/popular`
+            `${urlEnum.production}/api/tv/popular`
           )
         ).json(),
       ]);
