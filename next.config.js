@@ -13,8 +13,8 @@ const nextConfig = {
         destination:`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko&region=KR&page=:page`
       },
       {
-        source:"/api/movies/now",
-        destination:`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=ko&region=KR`
+        source:"/api/movies/now/:page",
+        destination:`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=ko&region=KR&page=:page`
       },
       {
         source:"/api/tv/popular",
